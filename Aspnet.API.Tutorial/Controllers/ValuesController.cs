@@ -21,19 +21,21 @@ namespace Aspnet.API.Tutorial.Controllers
 
         // GET api/<controller>/5
         [HttpGet("{id:int}")] // "{id:int}" work only if id is int
-        public string Get([FromQuery]int id,string query)
+        public IActionResult Get(int id,string query)
         {
-            return $"value {id} query = {query}";
+            return Ok(new Value { Id = id, Text = "value " + id });
         }
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]Value value)
+        public IActionResult Post([FromBody]Value value)
         {
             if (!ModelState.IsValid)
             {
-                throw new InvalidOperationException("Invalid");
+                return BadRequest(ModelState);
             }
+
+            return CreatedAtAction("Get",new {id = value.Id },value);
         }
 
         // PUT api/<controller>/5
