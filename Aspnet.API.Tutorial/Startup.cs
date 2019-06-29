@@ -26,6 +26,8 @@ namespace Aspnet.API.Tutorial
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMvc();
+
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync("MVC didn't find anything!");
