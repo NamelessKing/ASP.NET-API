@@ -14,6 +14,7 @@ namespace Aspnet.API.Tutorial.Controllers
     {
         // GET: api/<controller>
         [HttpGet]
+        [Produces("application/json")]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
